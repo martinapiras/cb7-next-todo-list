@@ -21,4 +21,12 @@
       color: white;
     }
   }
+
+  .addTodo {
+    input {
+      padding: $padding-sm;
+      border-radius: $border-radius-2;
+      border: 1px solid gray;
+    }
+  }
 }
