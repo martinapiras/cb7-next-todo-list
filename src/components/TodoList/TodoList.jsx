@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MainContext } from "@/store";
 import styles from "./TodoList.module.scss";
 
 const TodoList = () => {
   const { state, dispatch } = useContext(MainContext);
+  const [inputValue, setInputValue] = useState("");
 
   const onHandleCompleted = (id) => {
     dispatch({ type: "SET_COMPLETED", payload: id });
@@ -11,6 +12,15 @@ const TodoList = () => {
 
   const onHandleIncomplete = (id) => {
     dispatch({ type: "SET_INCOMPLETE", payload: id });
+  };
+
+  const onHandleInputValue = (e) => setInputValue(e.target.value);
+
+  const onHandleSubmit = (length) => {
+    dispatch({
+      type: "ADD_TODO",
+      payload: { id: length, todo: inputValue, completed: false },
+    });
   };
 
   return (
@@ -28,6 +38,17 @@ const TodoList = () => {
           {todo.todo}
         </p>
       ))}
+      <form
+        className={styles.addTodo}
+        onSubmit={() => onHandleSubmit(state.length)}
+      >
+        <input
+          type="text"
+          placeholder="Ex.: Water the plants"
+          value={inputValue}
+          onChange={onHandleInputValue}
+        />
+      </form>
     </div>
   );
 };
