@@ -10,6 +10,16 @@ export const mainReducer = (state, action) => {
         todo.id === action.payload ? { ...todo, completed: false } : todo
       );
 
+    case "ADD_TODO":
+      return [
+        ...state,
+        {
+          id: action.payload.id,
+          todo: action.payload.todo,
+          completed: action.payload.completed,
+        },
+      ];
+
     default:
       return state;
   }
