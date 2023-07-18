@@ -16,11 +16,13 @@ const TodoList = () => {
 
   const onHandleInputValue = (e) => setInputValue(e.target.value);
 
-  const onHandleSubmit = (length) => {
+  const onHandleSubmit = (e, length) => {
+    e.preventDefault();
     dispatch({
       type: "ADD_TODO",
       payload: { id: length, todo: inputValue, completed: false },
     });
+    setInputValue("");
   };
 
   return (
@@ -40,13 +42,14 @@ const TodoList = () => {
       ))}
       <form
         className={styles.addTodo}
-        onSubmit={() => onHandleSubmit(state.length)}
+        onSubmit={(e) => onHandleSubmit(e, state.length)}
       >
         <input
           type="text"
           placeholder="Ex.: Water the plants"
           value={inputValue}
           onChange={onHandleInputValue}
+          minLength={3}
         />
       </form>
     </div>
