@@ -1,0 +1,20 @@
+$mobile: 0px; //xs
+$tablet: 768px; //md
+$desktop: 1024px; //lg
+
+@mixin xs() {
+  @media only screen and (min-width: $mobile) and (max-width: #{$tablet - 1}) {
+    @content;
+  }
+}
+
+@mixin md() {
+  @media only screen and (min-width: $tablet) and (max-width: #{$desktop - 1}) {
+    @content;
+  }
+}
+@mixin lg() {
+  @media only screen and (min-width: $desktop) {
+    @content;
+  }
+}

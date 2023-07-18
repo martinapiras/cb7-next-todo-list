@@ -1,0 +1,15 @@
+@mixin flexbox-hrz($gap) {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin flexbox-vrt($gap) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+}

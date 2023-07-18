@@ -1,0 +1,24 @@
+.TodoList {
+  @include flexbox-vrt(10px);
+  padding: $padding-gen;
+
+  .todo {
+    width: 80%;
+    padding: $padding-sm;
+    background-color: lightblue;
+    border: 1px solid gray;
+    border-radius: $border-radius-2;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.35s ease-in-out;
+
+    &.completed {
+      text-decoration: line-through;
+    }
+
+    &:hover {
+      background-color: #41646f;
+      color: white;
+    }
+  }
+}
