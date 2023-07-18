@@ -49,6 +49,7 @@ const TodoList = () => {
           placeholder="Ex.: Water the plants"
           value={inputValue}
           onChange={onHandleInputValue}
+          minLength={3}
         />
       </form>
     </div>
