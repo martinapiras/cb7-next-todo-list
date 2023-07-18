@@ -11,6 +11,7 @@
     text-align: center;
     cursor: pointer;
     transition: all 0.35s ease-in-out;
+    position: relative;
 
     &.completed {
       text-decoration: line-through;
@@ -19,6 +20,24 @@
     &:hover {
       background-color: #41646f;
       color: white;
+    }
+
+    .todoText {
+      padding-right: 50px;
+    }
+
+    .todoDelete {
+      width: 50px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: $padding-sm;
+      @extend %center-content;
+      transition: transform 0.35s;
+
+      &:hover {
+        transform: scale(1.5);
+      }
     }
   }
 

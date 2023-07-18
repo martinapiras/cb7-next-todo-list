@@ -18,17 +18,26 @@ const TodoList = () => {
 
   const onHandleSubmit = (e, length) => {
     e.preventDefault();
+    if (inputValue.length > 3) {
+      dispatch({
+        type: "ADD_TODO",
+        payload: { id: length + 1, todo: inputValue, completed: false },
+      });
+      setInputValue("");
+    }
+  };
+
+  const onHandleDeleteTodo = (id) => {
     dispatch({
-      type: "ADD_TODO",
-      payload: { id: length, todo: inputValue, completed: false },
+      type: "DELETE_TODO",
+      payload: id,
     });
-    setInputValue("");
   };
 
   return (
     <div className={`${styles.TodoList} col-6 col-xs-12`}>
       {state?.map((todo) => (
-        <p
+        <div
           key={todo.id}
           className={`${styles.todo} ${todo.completed ? styles.completed : ""}`}
           onClick={
@@ -37,8 +46,14 @@ const TodoList = () => {
               : () => onHandleCompleted(todo.id)
           }
         >
-          {todo.todo}
-        </p>
+          <p className={styles.todoText}>{todo.todo}</p>
+          <span
+            className={styles.todoDelete}
+            onClick={() => onHandleDeleteTodo(todo.id)}
+          >
+            X
+          </span>
+        </div>
       ))}
       <form
         className={styles.addTodo}
