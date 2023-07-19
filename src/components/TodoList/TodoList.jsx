@@ -16,12 +16,12 @@ const TodoList = () => {
 
   const onHandleInputValue = (e) => setInputValue(e.target.value);
 
-  const onHandleSubmit = (e, length) => {
+  const onHandleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.length > 3) {
+    if (inputValue.length >= 3) {
       dispatch({
         type: "ADD_TODO",
-        payload: { id: length + 1, todo: inputValue, completed: false },
+        payload: { id: Date.now(), todo: inputValue },
       });
       setInputValue("");
     }
@@ -36,7 +36,7 @@ const TodoList = () => {
 
   return (
     <div className={`${styles.TodoList} col-6 col-xs-12`}>
-      {state?.map((todo) => (
+      {state?.todos?.map((todo) => (
         <div
           key={todo.id}
           className={`${styles.todo} ${todo.completed ? styles.completed : ""}`}
@@ -55,10 +55,7 @@ const TodoList = () => {
           </span>
         </div>
       ))}
-      <form
-        className={styles.addTodo}
-        onSubmit={(e) => onHandleSubmit(e, state.length)}
-      >
+      <form className={styles.addTodo} onSubmit={onHandleSubmit}>
         <input
           type="text"
           placeholder="Ex.: Water the plants"
