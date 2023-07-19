@@ -1,27 +1,51 @@
 export const mainReducer = (state, action) => {
   switch (action.type) {
     case "SET_COMPLETED":
-      return state.map((todo) =>
-        todo.id === action.payload ? { ...todo, completed: true } : todo
-      );
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload ? { ...todo, completed: true } : todo
+        ),
+      };
 
     case "SET_INCOMPLETE":
-      return state.map((todo) =>
-        todo.id === action.payload ? { ...todo, completed: false } : todo
-      );
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload ? { ...todo, completed: false } : todo
+        ),
+      };
 
     case "ADD_TODO":
-      return [
+      return {
         ...state,
-        {
-          id: action.payload.id,
-          todo: action.payload.todo,
-          completed: action.payload.completed,
-        },
-      ];
+        todos: [
+          ...state.todos,
+          {
+            id: action.payload.id,
+            todo: action.payload.todo,
+            completed: false,
+          },
+        ],
+      };
 
     case "DELETE_TODO":
-      return state.filter((todo) => todo.id !== action.payload);
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== action.payload),
+      };
+
+    case "SET_USERNAME":
+      return {
+        ...state,
+        username: action.payload,
+      };
+
+    case "SET_LOGOUT":
+      return {
+        ...state,
+        username: "",
+      };
 
     default:
       return state;

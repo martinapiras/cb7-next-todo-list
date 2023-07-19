@@ -1,0 +1,13 @@
+.DefaultLayout {
+  @include flexbox-vrt(0);
+
+  .content {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    overflow-y: auto;
+    margin-bottom: 75px;
+  }
+}
