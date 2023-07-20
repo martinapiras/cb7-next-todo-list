@@ -1,51 +1,84 @@
 .TodoList {
-  @include flexbox-vrt(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  position: relative;
   padding: $padding-gen;
 
-  .todo {
-    width: 80%;
+  .title {
+    width: 100%;
+    height: fit-content;
+    font-family: Handlee, cursive;
     padding: $padding-sm;
-    background-color: lightblue;
-    border: 1px solid gray;
-    border-radius: $border-radius-2;
     text-align: center;
-    cursor: pointer;
-    transition: all 0.35s ease-in-out;
-    position: relative;
+  }
 
-    &.completed {
-      text-decoration: line-through;
+  .list {
+    width: 100%;
+    @include flexbox-vrt(10px);
+    margin-bottom: 50px;
+
+    @include lg {
+      margin-bottom: 0;
     }
 
-    &:hover {
-      background-color: #41646f;
-      color: white;
-    }
-
-    .todoText {
-      padding-right: 50px;
-    }
-
-    .todoDelete {
-      width: 50px;
-      position: absolute;
-      right: 0;
-      top: 0;
+    .todo {
+      width: 80%;
       padding: $padding-sm;
-      @extend %center-content;
-      transition: transform 0.35s;
+      background-color: lightblue;
+      border: 1px solid gray;
+      border-radius: $border-radius-2;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.35s ease-in-out;
+      position: relative;
+
+      &.completed {
+        text-decoration: line-through;
+      }
 
       &:hover {
-        transform: scale(1.5);
+        background-color: #41646f;
+        color: white;
+      }
+
+      .todoText {
+        padding-right: 50px;
+      }
+
+      .todoDelete {
+        width: 50px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: $padding-sm;
+        @extend %center-content;
+        transition: transform 0.35s;
+
+        &:hover {
+          transform: scale(1.5);
+        }
       }
     }
   }
 
   .addTodo {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    @extend %center-content;
+
     input {
+      width: 75%;
       padding: $padding-sm;
       border-radius: $border-radius-2;
       border: 1px solid gray;
+    }
+
+    @include lg {
+      position: inherit;
     }
   }
 }

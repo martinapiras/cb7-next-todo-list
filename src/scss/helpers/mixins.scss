@@ -13,3 +13,9 @@
   align-items: center;
   gap: $gap;
 }
+
+@mixin mobile-hidden() {
+  @include xs {
+    display: none;
+  }
+}

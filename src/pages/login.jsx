@@ -1,24 +1,24 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useRouter } from "next/router";
+import { signInWithPopup } from "firebase/auth";
+import { FcGoogle } from "react-icons/fc";
+import { provider, auth } from "@/plugins/firebase";
 import { MainContext } from "@/store";
 import Head from "next/head";
 import styles from "@/scss/pages/Login.module.scss";
 
 export default function Login() {
-  const router = useRouter();
-  const { state, dispatch } = useContext(MainContext);
-  const [usernameInput, setUsernameInput] = useState(state.username);
-
-  const onHandleInput = (e) => setUsernameInput(e.target.value);
-
-  const onHandleSubmit = (e) => {
-    e.preventDefault();
+  const onHandleSignIn = async () => {
+    const res = await signInWithPopup(auth, provider);
     dispatch({
       type: "SET_USERNAME",
-      payload: usernameInput,
+      payload: res.user.displayName,
     });
-    router.push("/");
+    return router.push("/");
   };
+
+  const router = useRouter();
+  const { state, dispatch } = useContext(MainContext);
 
   return (
     <>
@@ -29,17 +29,17 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.Login}>
-        <h1 className={styles.title}>Login</h1>
-        <form className={styles.loginForm} onSubmit={onHandleSubmit}>
-          <input
-            type="text"
-            className={styles.textInput}
-            placeholder="Enter your username"
-            value={usernameInput}
-            onChange={onHandleInput}
-          />
-          <input type="submit" value="Login" className={styles.submitInput} />
-        </form>
+        <h1 className={styles.title}>Sign in with Google</h1>
+        <div
+          onClick={onHandleSignIn}
+          className={styles.googleSignIn}
+          title="Log in with Google"
+        >
+          <span className={styles.icon}>
+            <FcGoogle />
+          </span>
+          <span className={styles.text}>Log in</span>
+        </div>
       </div>
     </>
   );

@@ -1,10 +1,41 @@
 .Login {
   width: 100%;
   height: calc(100vh - 75px);
-  @include flexbox-vrt(0px);
+  @include flexbox-vrt(10px);
 
   .title {
     font-family: Handlee, cursive;
+  }
+
+  .googleSignIn {
+    width: 150px;
+    height: 60px;
+    border: 1px solid #00000080;
+    border-radius: $border-radius-2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding-sm;
+    cursor: pointer;
+
+    .icon {
+      width: 40%;
+      height: 80%;
+      @extend %center-content;
+
+      svg {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    .text {
+      width: 60%;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #00000080;
+    }
   }
 
   .loginForm {

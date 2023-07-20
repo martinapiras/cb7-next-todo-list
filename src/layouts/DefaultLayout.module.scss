@@ -1,13 +1,23 @@
-.DefaultLayout {
-  @include flexbox-vrt(0);
+.main {
+  height: 100vh;
+  overflow-y: auto;
 
-  .content {
-    min-height: calc(100vh - 75px);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    overflow-y: auto;
-    margin-bottom: 75px;
+  .DefaultLayout {
+    @include flexbox-vrt(0);
+
+    .content {
+      min-height: calc(100vh - 75px);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      overflow-y: auto;
+      margin-bottom: 75px;
+
+      @include lg {
+        margin-top: 75px;
+        margin-bottom: 0;
+      }
+    }
   }
 }
