@@ -1,9 +1,8 @@
 import { useContext } from "react";
-import { BiDownArrowAlt } from "react-icons/bi";
 import { MainContext } from "@/store";
 import Head from "next/head";
 import TodoList from "@/components/TodoList";
-import styles from "@/scss/Home.module.scss";
+import styles from "@/scss/pages/Home.module.scss";
 
 export default function Home() {
   const { state, dispatch } = useContext(MainContext);
@@ -16,23 +15,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        {state.username ? (
-          <>
-            <h1 className={styles.title}>{state.username}'s To-do list</h1>
-            <TodoList />
-          </>
-        ) : (
-          <>
-            <h1 className={styles.placeholder}>
-              Please login to see your list
-            </h1>
-            <div className={styles.arrow}>
-              <BiDownArrowAlt />
-            </div>
-          </>
-        )}
-      </main>
+      {state.username ? (
+        <>
+          <TodoList />
+        </>
+      ) : (
+        <>
+          <h1 className={styles.placeholder}>Please log in to see your list</h1>
+        </>
+      )}
     </>
   );
 }

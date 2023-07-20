@@ -14,17 +14,20 @@ const Navbar = () => {
   return (
     <div className={styles.Navbar}>
       <div className={styles.icon}>
-        <Link href="/">
+        <Link href="/" title="Home">
           <BiHomeHeart />
         </Link>
       </div>
+      <div className={styles.text}>
+        {state.username ? `Good to see you, ${state.username}!` : "Visitor"}
+      </div>
       <div className={styles.icon}>
-        <Link href="/login">
-          {state.username ? (
-            <BiLogOutCircle onClick={onHandleLogout} />
-          ) : (
-            <BiLogInCircle />
-          )}
+        <Link
+          href="/login"
+          onClick={state.username && onHandleLogout}
+          title={state.username ? "Log out" : "Log in"}
+        >
+          {state.username ? <BiLogOutCircle /> : <BiLogInCircle />}
         </Link>
       </div>
     </div>

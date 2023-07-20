@@ -7,6 +7,13 @@
   @include flexbox-hrz(0);
   z-index: 200;
 
+  .text {
+    @include mobile-hidden;
+    width: 33.33%;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
   .icon {
     width: 50%;
     height: 100%;
@@ -35,5 +42,14 @@
         height: auto;
       }
     }
+
+    @include lg {
+      width: 33.33%;
+      border-right: none;
+    }
+  }
+
+  @include lg {
+    top: 0;
   }
 }

@@ -36,25 +36,30 @@ const TodoList = () => {
 
   return (
     <div className={`${styles.TodoList} col-6 col-xs-12`}>
-      {state?.todos?.map((todo) => (
-        <div
-          key={todo.id}
-          className={`${styles.todo} ${todo.completed ? styles.completed : ""}`}
-          onClick={
-            todo.completed
-              ? () => onHandleIncomplete(todo.id)
-              : () => onHandleCompleted(todo.id)
-          }
-        >
-          <p className={styles.todoText}>{todo.todo}</p>
-          <span
-            className={styles.todoDelete}
-            onClick={() => onHandleDeleteTodo(todo.id)}
+      <h1 className={styles.title}>{state.username}'s To-do list</h1>
+      <div className={styles.list}>
+        {state?.todos?.map((todo) => (
+          <div
+            key={todo.id}
+            className={`${styles.todo} ${
+              todo.completed ? styles.completed : ""
+            }`}
+            onClick={
+              todo.completed
+                ? () => onHandleIncomplete(todo.id)
+                : () => onHandleCompleted(todo.id)
+            }
           >
-            X
-          </span>
-        </div>
-      ))}
+            <p className={styles.todoText}>{todo.todo}</p>
+            <span
+              className={styles.todoDelete}
+              onClick={() => onHandleDeleteTodo(todo.id)}
+            >
+              X
+            </span>
+          </div>
+        ))}
+      </div>
       <form className={styles.addTodo} onSubmit={onHandleSubmit}>
         <input
           type="text"
